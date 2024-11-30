@@ -1,5 +1,5 @@
 class warehouse():
-      """
+    """
     A class to represent a warehouse and manage its inventory.
 
     Attributes:
