@@ -1,4 +1,4 @@
-from warehouse_management import warehouse
+from .warehouse_management import warehouse
 class sales(warehouse):
     """
     A class to manage sales-related operations, including products on shelves.
