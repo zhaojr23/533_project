@@ -42,13 +42,13 @@ class sales(warehouse):
     def increase_quantity(self, productId, quantity):
         if productId in self.shelves and quantity <= self.products[productId]["quantity"]:
             self.shelves[productId]["quantity"] += quantity
-            self.remove_products(productId, quantity)
+            self.remove_product(productId, quantity)
         else:
             print("This product is not on the shelves")
 
     def decrease_quantity(self, productId, quantity):
         if productId in self.shelves and quantity <= self.shelves[productId]["quantity"]:
-            self.shelves[productId]["quantity"] += quantity
+            self.shelves[productId]["quantity"] -= quantity
             self.products[productId]["quantity"] += quantity
         else:
             print("This product is not on the shelves")
