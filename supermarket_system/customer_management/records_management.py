@@ -47,6 +47,7 @@ class record():
     def get_history(self, customerId):
         #print(self.history)
         records = self.history.get(customerId, [])
+        #print(records)
         print( [[record["date"], record["items"], record["total_price"],record["status"]] for record in records])
 
     def get_total(self,customerId):

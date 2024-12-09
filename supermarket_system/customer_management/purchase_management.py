@@ -50,6 +50,7 @@ class purchase():
                             print("Sorry, insufficient stock on the shelf.")
                         else:
                             self.purchases.append({
+                                "id" : productId,
                                 "name": sales.shelves[productId]["name"],
                                 "price": sales.shelves[productId]["sprice"],
                                 "quantity": quantity,
@@ -100,17 +101,22 @@ class purchase():
          total_price = 0
          profit = 0
          cal_q = {}
+         items={}
          print("Items in your cart:")
          for item in self.purchases:
              total_price += item["price"] * item["quantity"]
              profit += (item["price"]-item["pprice"]) * item["quantity"]
              print(f"{item['name']} - Quantity: {item['quantity']}, Price: {item['price']}, Total: {item['price'] * item['quantity']}")
+             if item['id'] not in items:
+                 items[item['id']] ={"price": item['price'],"quantity" : item['quantity']}
+             else:
+                 items[item['id']]['quantity'] += item['quantity']
              if item['name'] not in cal_q:
                  cal_q[item['name']] = item['quantity']
              else:
                  cal_q[item['name']] += item['quantity']
          print(f"Total Price: {total_price}")
 
-         self.record.add_record(self.customerId, self.purchases, total_price, profit,cal_q)
+         self.record.add_record(self.customerId, items, total_price, profit,cal_q)
         
-         self.customers = []
+         self.purchases = []
